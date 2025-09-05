@@ -1,57 +1,61 @@
-# React + TypeScript + Vite
+# Painel BB
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação full-stack React + Node.js para gerenciamento de dados.
 
-Currently, two official plugins are available:
+## Deploy no Render
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este projeto está configurado para deploy automático no Render usando o arquivo `render.yaml`.
 
-## Expanding the ESLint configuration
+### Passos para Deploy:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Repositório GitHub**: ✅ Código já enviado para https://github.com/maspider2025/painel-bb.git
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+2. **Configurar no Render**:
+   - Acesse [render.com](https://render.com)
+   - Faça login/cadastro
+   - Clique em "New" → "Blueprint"
+   - Conecte sua conta GitHub
+   - Selecione o repositório `maspider2025/painel-bb`
+   - O Render detectará automaticamente o arquivo `render.yaml`
+   - Clique em "Apply" para iniciar o deploy
+
+3. **Serviços que serão criados**:
+   - **Backend**: `painel-bb-backend` (Node.js/Express)
+   - **Frontend**: `painel-bb-frontend` (React/Vite)
+
+4. **Variáveis de Ambiente**:
+   - Todas as variáveis necessárias já estão configuradas no `render.yaml`
+   - Supabase URL e chaves já incluídas
+   - JWT_SECRET será gerado automaticamente
+
+### URLs de Acesso:
+Após o deploy, você receberá:
+- Frontend: `https://painel-bb-frontend.onrender.com`
+- Backend API: `https://painel-bb-backend.onrender.com`
+
+### Recursos Gratuitos do Render:
+- 750 horas/mês por serviço
+- SSL automático
+- Deploy automático a cada push
+- CDN global
+
+## Desenvolvimento Local
+
+```bash
+# Instalar dependências
+npm install
+
+# Executar em modo desenvolvimento
+npm run dev
+
+# Build para produção
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tecnologias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Frontend**: React, TypeScript, Tailwind CSS, Vite
+- **Backend**: Node.js, Express, TypeScript
+- **Banco de Dados**: Supabase (PostgreSQL)
+- **Autenticação**: JWT + Supabase Auth
+- **Deploy**: Render
