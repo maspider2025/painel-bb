@@ -1,0 +1,36 @@
+services:
+  # Backend Service
+  - type: web
+    name: painel-bb-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SUPABASE_URL
+        value: https://vokukjbejfgupjxwcuvl.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZva3VramJlamZndXBqeHdjdXZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcwMTcxNDgsImV4cCI6MjA3MjU5MzE0OH0.8ry9hA1lz_0qOoVNM0N59T1-sCk7J72OWK_8GOoThdA
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZva3VramJlamZndXBqeHdjdXZsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NzAxNzE0OCwiZXhwIjoyMDcyNTkzMTQ4fQ.QgAkXSmzBENdaGg0Wddkno7jYMIyRBsopVxavkdy7uw
+
+  # Frontend Service
+  - type: web
+    name: painel-bb-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_ENV
+        value: production
